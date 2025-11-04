@@ -64,20 +64,18 @@ function UserDashboard() {
       });
       const data = await res.json();
       if (res.ok) {
-      setShowModal(false);  
-      setFirstName("");
-      setLastName("");
-      setVideoSent(false);
-      loadUserList();
-
-  await Swal.fire({
-    icon: "success",
-    title: "¡Agregado!",
-    text: `${data.user.name} se agregó correctamente`,
-    confirmButtonText: "Continuar"
-  });
-}
- else {
+        setShowModal(false);
+        setFirstName("");
+        setLastName("");
+        setVideoSent(false);
+        loadUserList();
+        await Swal.fire({
+          icon: "success",
+          title: "¡Agregado!",
+          text: `${data.user.name} se agregó correctamente`,
+          confirmButtonText: "Continuar"
+        });
+      } else {
         Swal.fire({
           icon: "error",
           title: "Error",
@@ -105,7 +103,7 @@ function UserDashboard() {
       cancelButtonText: "Cancelar",
       reverseButtons: true
     });
-    
+
     if (!result.isConfirmed) return;
 
     try {
@@ -143,21 +141,40 @@ function UserDashboard() {
   };
 
   const handleSendVideo = () => {
-    setVideoSent(true);
+    const destinatario = "securebylockera@gmail.com";
+    const asunto = encodeURIComponent("Envío de video para verificación de identidad - Lockera");
+    const cuerpo = encodeURIComponent(`Hola, querido usuario de Lockera:
+            
+Para completar el proceso de verificación de identidad y garantizar la seguridad de su cerrojo inteligente, le pedimos seguir las siguientes indicaciones para la grabación del video:
+
+1. Grabe un video sin utilizar accesorios que cubran el rostro, como lentes, cubrebocas, gorros o máscaras. Mantenga una distancia adecuada de la cámara, ni muy cerca ni muy lejos, de manera que su rostro se vea claramente e iluminado.
+2. Mantenga su rostro centrado frente a la cámara durante 1 a 2 segundos. Luego, gire la cabeza hacia la izquierda y mantenga la posición durante 1 a 2 segundos. A continuación, gire hacia la derecha y sostenga la posición el mismo tiempo. Finalmente, repita el movimiento hacia arriba y hacia abajo.
+3. La duración total del video no debe superar los 15 segundos ni exceder los 18 MB de tamaño.
+4. Enviar los datos registrados: nombre, correo electrónico y número de serie del cerrojo. El registro del rostro será procesado y dado de alta en un plazo aproximado de 1 a 24 horas.
+
+Agradecemos su colaboración y confianza en Lockera.
+
+Atentamente,
+El equipo de Lockera`);
+    const mailtoLink = `mailto:${destinatario}?subject=${asunto}&body=${cuerpo}`;
     Swal.fire({
-      icon: "success",
-      title: "¡Listo!",
-      text: "Video validado correctamente",
-      confirmButtonText: "Continuar",
-      timer: 2000,
-      timerProgressBar: true
+      title: '¡Video listo para enviar!',
+      text: 'Se abrirá tu cliente de correo para enviar el video.',
+      icon: 'info',
+      toast: true,
+      position: 'top-end',
+      timer: 5000,
+      showConfirmButton: false
     });
+    setTimeout(() => {
+      window.location.href = mailtoLink;
+      setVideoSent(true);
+    }, 500);
   };
 
   return (
     <>
       <Navbar />
-
       <div className="container">
         <div className="user-info">
           <h1>¡Hola, bienvenido!</h1>
@@ -179,7 +196,6 @@ function UserDashboard() {
               <ion-icon name="person-add-outline" /> Agregar Usuario
             </button>
           </div>
-
           <ul className="user-list-items">
             {users.map((u) => (
               <li key={u.id}>
@@ -213,7 +229,6 @@ function UserDashboard() {
                   required
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="lastName">Apellido (máx. 15 caracteres):</label>
                 <input
@@ -224,7 +239,6 @@ function UserDashboard() {
                   required
                 />
               </div>
-
               <div className="form-group">
                 <label>Enviar Video (obligatorio)</label>
                 <button type="button" className="send-video-btn" onClick={handleSendVideo}>
@@ -237,22 +251,19 @@ function UserDashboard() {
                     "Enviar Video"
                   )}
                 </button>
-                
                 {!videoSent && (
                   <div className="video-warning">
                     <ion-icon name="alert-circle-outline" />
                     <span>Debes enviar el video antes de agregar el usuario</span>
                   </div>
                 )}
-                
                 {videoSent && (
                   <div className="video-success">
                     <ion-icon name="checkmark-circle-outline" />
-                    <span>Video validado. Ya puedes agregar el usuario</span>
+                    <span>Video validado. ¡Ya puedes agregar el usuario!</span>
                   </div>
                 )}
               </div>
-
               <div className="modal-actions">
                 <button type="button" className="cancel-btn" onClick={() => { setShowModal(false); setVideoSent(false); }}>
                   Cancelar

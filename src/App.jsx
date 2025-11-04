@@ -109,7 +109,7 @@ function App() {
           </div>
 
           <footer className="legal">
-            <small>Obtén la app de Lock'era — Disponible en PC.</small>
+            <small>Lock'era — 2025.</small>
           </footer>
         </section>
 
