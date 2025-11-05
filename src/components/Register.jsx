@@ -149,10 +149,18 @@ function Register() {
               />
               Mostrar contraseña
             </label>
-             <label>
-            <input type="checkbox" checked={terms} onChange={() => setTerms(!terms)} />
-            Acepto los <a href="/terms" className="terms" onClick={(e) => e.preventDefault()}>términos y condiciones</a>
-            </label>
+            <label>
+            <input
+            type="checkbox"
+            checked={terms}
+            onChange={() => setTerms(!terms)}
+               />
+            Acepto los{" "}
+         <a href="/terminos" className="terms">
+    términos y condiciones
+  </a>
+</label>
+
             <button type="submit">Registrar</button>
           </form>
         </div>

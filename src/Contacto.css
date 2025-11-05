@@ -1,0 +1,290 @@
+:root {
+  --bg: rgb(32, 32, 32);
+  --card: #121216;
+  --muted: #9a9aa0;
+  --accent: linear-gradient(135deg, #4c4c4c, #932222);
+  --glass: rgba(255, 255, 255, 0.03);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at 10% 10%, rgba(155, 92, 255, 0.06), transparent 15%), var(--bg);
+  color: #eaeaea;
+  min-height: 100vh;
+}
+
+.section-contact {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 140px 40px 60px; 
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 900px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  padding: 40px 32px;
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,0.4),
+    0 2px 8px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(155, 92, 255, 0.5), transparent);
+  animation: shimmer 3s infinite;
+}
+
+.h2-contact {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.contact-container > p {
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 36px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-option {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: rgba(255,255,255,0.02);
+  padding: 20px 24px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.contact-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-option:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: 
+    0 8px 24px rgba(0,0,0,0.3),
+    0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.contact-option:hover::before {
+  opacity: 1;
+}
+
+.contact-option:active {
+  transform: translateY(-2px);
+}
+
+.contact-option ion-icon {
+  font-size: 28px;
+  color: #fff;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.contact-option:hover ion-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.contact-option-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.contact-option a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.25s ease;
+  position: relative;
+  display: inline-block;
+  line-height: 1.4;
+}
+
+.contact-option a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+.contact-option:hover a {
+  transform: translateX(2px);
+}
+
+.contact-option:hover a::after {
+  width: 100%;
+}
+
+.contact-option p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.contact-option:nth-child(1) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s backwards;
+}
+
+.contact-option:nth-child(2) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s backwards;
+}
+
+.contact-option:nth-child(3) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s backwards;
+}
+
+.contact-option:nth-child(4) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.4s backwards;
+}
+
+@media (max-width: 768px) {
+  .section-contact {
+    padding: 120px 20px 40px;
+  }
+  
+  .h2-contact {
+    font-size: 26px;
+  }
+  
+  .contact-container {
+    padding: 32px 24px;
+  }
+  
+  .contact-option {
+    padding: 16px 20px;
+    gap: 16px;
+  }
+  
+  .contact-option ion-icon {
+    font-size: 24px;
+  }
+  
+  .contact-option a {
+    font-size: 15px;
+  }
+  
+  .contact-option p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-contact {
+    padding: 100px 16px 20px;
+  }
+  
+  .h2-contact {
+    font-size: 24px;
+  }
+  
+  .contact-container {
+    padding: 28px 20px;
+    border-radius: 14px;
+  }
+  
+  .contact-option {
+    padding: 16px 18px;
+    gap: 14px;
+  }
+  
+  .contact-option ion-icon {
+    font-size: 22px;
+  }
+  
+  .contact-option a {
+    font-size: 14px;
+  }
+  
+  .contact-option p {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

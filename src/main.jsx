@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import App from "./App";
 import Register from "./components/Register";
 import UserDashboard from "./components/UserDashboard";
+import Nosotros from "./components/Nosotros"; 
+import Contacto from "./components/Contacto";
+import Terminos from "./components/Terminos"; 
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -16,11 +19,17 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/register" element={<Register />} />
+      
+      <Route path="/nosotros" element={<Nosotros />} />
+      <Route path="/contacto" element={<Contacto />} />
+      <Route path="/terminos" element={<Terminos />} />
+
       <Route path="/dashboard" element={
         <PrivateRoute>
           <UserDashboard />
         </PrivateRoute>
       } />
+
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   </Router>

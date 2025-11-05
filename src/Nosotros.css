@@ -1,0 +1,321 @@
+:root {
+  --bg: rgb(32, 32, 32);
+  --card: #121216;
+  --muted: #9a9aa0;
+  --accent: linear-gradient(135deg, #4c4c4c, #932222);
+  --glass: rgba(255, 255, 255, 0.03);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at 10% 10%, rgba(155, 92, 255, 0.06), transparent 15%), var(--bg);
+  color: #eaeaea;
+  min-height: 100vh;
+}
+
+.pagina-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 140px 40px 60px; 
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.seccion-encabezado {
+  text-align: center;
+  margin-bottom: 60px;
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s backwards;
+}
+
+.seccion-encabezado h1 {
+  font-size: 42px;
+  font-weight: 700;
+  background: var(--accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.seccion-encabezado h2 {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.seccion-equipo {
+  text-align: center;
+  width: 100%;
+  max-width: 1000px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border-radius: 16px;
+  padding: 40px 32px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,0.4),
+    0 2px 8px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s backwards;
+}
+
+.seccion-equipo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(155, 92, 255, 0.5), transparent);
+  animation: shimmer 3s infinite;
+}
+
+.seccion-equipo h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 32px;
+  letter-spacing: -0.5px;
+}
+
+.grilla-equipo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.miembro-equipo {
+  background: rgba(255,255,255,0.02);
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.miembro-equipo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.miembro-equipo:hover {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: 
+    0 8px 24px rgba(0,0,0,0.3),
+    0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.miembro-equipo:hover::before {
+  opacity: 1;
+}
+
+.miembro-equipo h4 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.miembro-equipo:hover h4 {
+  transform: translateX(2px);
+}
+
+.rol {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-nosotros {
+  display: block;
+  width: 140px;         
+  margin: 0 auto 20px;  
+  filter: drop-shadow(0 4px 12px rgba(255,255,255,0.15));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInScale 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.05s backwards;
+}
+
+.logo-nosotros:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 16px rgba(255,255,255,0.25));
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.miembro-equipo:nth-child(1) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s backwards;
+}
+
+.miembro-equipo:nth-child(2) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.4s backwards;
+}
+
+.miembro-equipo:nth-child(3) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s backwards;
+}
+
+.miembro-equipo:nth-child(4) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.6s backwards;
+}
+
+.miembro-equipo:nth-child(5) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.7s backwards;
+}
+
+.miembro-equipo:nth-child(6) {
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.8s backwards;
+}
+
+@media (max-width: 768px) {
+  .pagina-contenedor {
+    padding: 120px 20px 40px;
+  }
+
+  .seccion-encabezado h1 {
+    font-size: 36px;
+  }
+
+  .seccion-encabezado h2 {
+    font-size: 16px;
+  }
+
+  .seccion-equipo {
+    padding: 32px 24px;
+  }
+
+  .seccion-equipo h3 {
+    font-size: 22px;
+  }
+
+  .grilla-equipo {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .miembro-equipo {
+    padding: 20px;
+  }
+
+  .logo-nosotros {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagina-contenedor {
+    padding: 100px 16px 20px;
+  }
+
+  .seccion-encabezado {
+    margin-bottom: 40px;
+  }
+
+  .seccion-encabezado h1 {
+    font-size: 30px;
+  }
+
+  .seccion-encabezado h2 {
+    font-size: 15px;
+  }
+
+  .seccion-equipo {
+    padding: 28px 20px;
+  }
+
+  .seccion-equipo h3 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .grilla-equipo {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .miembro-equipo {
+    padding: 18px;
+  }
+
+  .miembro-equipo h4 {
+    font-size: 16px;
+  }
+
+  .rol {
+    font-size: 12px;
+  }
+
+  .logo-nosotros {
+    width: 100px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
