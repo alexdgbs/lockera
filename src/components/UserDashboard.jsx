@@ -116,7 +116,7 @@ function UserDashboard() {
         Swal.fire({
           icon: "success",
           title: "Eliminado",
-          text: `${data.user.name} fue eliminado correctamente`,
+          text: data.message,
           confirmButtonText: "Continuar",
           timer: 2000,
           timerProgressBar: true
@@ -198,10 +198,10 @@ El equipo de Lockera`);
           </div>
           <ul className="user-list-items">
             {users.map((u) => (
-              <li key={u.id}>
+              <li key={u._id}>
                 <span>{u.name}</span>
-                <button onClick={() => handleDeleteUser(u.id, u.name)}>
-                  <ion-icon name="trash-outline" /> 
+                <button onClick={() => handleDeleteUser(u._id, u.name)}>
+                  <ion-icon name="trash-outline" />
                 </button>
               </li>
             ))}

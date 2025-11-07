@@ -30,7 +30,7 @@ function Register() {
           body: JSON.stringify({ serial })
         });
         const data = await res.json();
-        if (!res.ok) setSerialError(data.message);
+        if (!res.ok || !data.message.includes("válido")) setSerialError(data.message);
         else setSerialError("");
       } catch {
         setSerialError("Error al validar el serial");
@@ -80,7 +80,7 @@ function Register() {
         body: JSON.stringify({ name, email, serial, password })
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message);
+      if (!res.ok) throw new Error(data.message || "No se pudo completar el registro");
       await Swal.fire({
         icon: "success",
         title: "¡Registro exitoso!",
@@ -150,17 +150,16 @@ function Register() {
               Mostrar contraseña
             </label>
             <label>
-            <input
-            type="checkbox"
-            checked={terms}
-            onChange={() => setTerms(!terms)}
-               />
-            Acepto los{" "}
-         <a href="/terminos" className="terms">
-    términos y condiciones
-  </a>
-</label>
-
+              <input
+                type="checkbox"
+                checked={terms}
+                onChange={() => setTerms(!terms)}
+              />
+              Acepto los{" "}
+              <a href="/terminos" className="terms">
+                términos y condiciones
+              </a>
+            </label>
             <button type="submit">Registrar</button>
           </form>
         </div>
